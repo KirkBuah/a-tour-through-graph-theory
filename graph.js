@@ -21,6 +21,10 @@ class Graph {
         // search for node1 and node2 in this.nodes
         const foundNode1 = this.nodes.find(node => node.value === value1);
         const foundNode2 = this.nodes.find(node => node.value === value2);
+        // check if edges already exist
+        if (this.adjList.get(foundNode1).includes(foundNode2) || this.adjList.get(foundNode2).includes(foundNode1)) {
+            return;
+        }
         // print found nodes
         console.log(foundNode1, foundNode2);
         if (!foundNode1 || !foundNode2) {
