@@ -2,6 +2,7 @@ class Graph {
     constructor() {
         this.nodes = [];
         this.adjList = new Map();
+        this.nodeDiameter = 10;
     }
 
     addNode(node) {
@@ -85,8 +86,8 @@ class Graph {
             node.y += totalForceY * 0.1;
 
             // Constrain positions to canvas
-            node.x = constrain(node.x, 0, width);
-            node.y = constrain(node.y, 0, height);
+            node.x = constrain(node.x, 0 + this.nodeDiameter/2, width - this.nodeDiameter/2);
+            node.y = constrain(node.y, 0 + this.nodeDiameter/2, height - this.nodeDiameter/2);
         });
     }
 
@@ -101,7 +102,7 @@ class Graph {
         });
 
         this.nodes.forEach(node => {
-            circle(node.x, node.y, 20);
+            circle(node.x, node.y, this.nodeDiameter);
         })
     }
 
