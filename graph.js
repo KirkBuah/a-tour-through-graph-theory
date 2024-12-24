@@ -94,15 +94,14 @@ class Graph {
     draw() {
         // draw edges
         stroke(0);
-
         this.nodes.forEach(node => {
             this.adjList.get(node).forEach(neighbor => {
                 line(node.x, node.y, neighbor.x, neighbor.y);
             });
         });
-
+        // draw nodes
         this.nodes.forEach(node => {
-            circle(node.x, node.y, this.nodeDiameter);
+            node.draw();
         })
     }
 
@@ -111,11 +110,34 @@ class Graph {
         this.repulsionConstant = repulsionConstant;
     }
 
+    resetColor() {
+        for (let node of this.nodes) {
+            node.color = color(0);
+        }
+    }
+
     print() {
         let result = '';
         this.nodes.forEach(node => {
             result += node.value + ' -> ' + this.adjList.get(node).map(node => node.value).join(', ') + '\n';
         });
         console.log(result);
+    }
+
+    isEulerian() {
+        // check connectedness
+        let even = 0;
+        let odd = 0;
+        this.nodes.forEach(node => {
+            let length = this.adjList.get(node).length;
+            if (length == 0) return false;
+            if (length % 2 == 0) {
+                even++;
+            } else {
+                odd++;
+            }
+        })
+        if (odd == 0 || odd == 2) return true;
+        return false;
     }
 }
