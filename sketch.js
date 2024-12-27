@@ -4,14 +4,15 @@ let graph;
 
 function setup() {
   createCanvas(800, 800);
-  graph = getRandomGraph(50,3, true);
+  graph = getRandomGraph(10,3, true);
+
 }
 
 function draw() {
   background(255);
   fill(0);
 
-  graph.draw();
+  graph.draw(label = true);
   graph.updateNodesPosition();
 
   // on click, run the BFS algorithm

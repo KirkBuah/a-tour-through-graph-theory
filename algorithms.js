@@ -62,3 +62,7 @@ async function breadthFirstSearch(graph, timeDelay = 0) {
       });
   }
 }
+
+async function fleurysAlgorithm(graph, timeDelay = 0) {
+  if (!graph.connected()) return;
+}

@@ -91,7 +91,7 @@ class Graph {
         });
     }
 
-    draw() {
+    draw(label = false) {
         // draw edges
         stroke(0);
         this.nodes.forEach(node => {
@@ -101,7 +101,7 @@ class Graph {
         });
         // draw nodes
         this.nodes.forEach(node => {
-            node.draw();
+            node.draw(label = label);
         })
     }
 
