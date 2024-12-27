@@ -140,4 +140,42 @@ class Graph {
         if (odd == 0 || odd == 2) return true;
         return false;
     }
+
+    isConnected() {
+        let visited = new Set();
+        let stack = [graph.nodes[0]];
+
+        while (stack.length > 0) {
+            let node = stack.pop();
+            visited.add(node);
+            graph.adjList.get(node).forEach(neighbor => {
+                if (!visited.has(neighbor)) {
+                    stack.push(neighbor);
+                }
+            });
+        }
+
+        if (visited.size == this.nodes.length) return true;
+        return false;
+    }
+
+    getOddVertices() {
+        let oddVertices = [];
+        this.nodes.forEach(node => {
+            let N = this.adjList.get(node).length;
+            if (N % 2 != 0) {
+                oddVertices.push(node);
+            }
+        });
+        return oddVertices;
+    }
+
+    getEvenVertices() {
+        let oddVertices = this.getOddVertices();
+        let evenVertices = this.nodes;
+        oddVertices.forEach(oddVertex => {
+            evenVertices = evenVertices.filter(vertex => vertex !== oddVertex);
+        });
+        return evenVertices;
+    }
 }
