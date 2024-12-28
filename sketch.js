@@ -4,8 +4,9 @@ let graph;
 
 function setup() {
   createCanvas(800, 800);
-  graph = getRandomGraph(10,3, true);
-
+  graph = getRandomGraph(5,3, true);
+  graph.print();
+  console.log(fleurysAlgorithm(graph))
 }
 
 function draw() {
