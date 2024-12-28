@@ -26,8 +26,6 @@ class Graph {
         if (this.adjList.get(foundNode1).includes(foundNode2) || this.adjList.get(foundNode2).includes(foundNode1)) {
             return;
         }
-        // print found nodes
-        console.log(foundNode1, foundNode2);
         if (!foundNode1 || !foundNode2) {
             return;
         }
@@ -177,5 +175,12 @@ class Graph {
             evenVertices = evenVertices.filter(vertex => vertex !== oddVertex);
         });
         return evenVertices;
+    }
+
+    getNeighbors(node) {
+        if (!this.adjList.has(node)) {
+            return [];
+        }
+        return this.adjList.get(node);
     }
 }
