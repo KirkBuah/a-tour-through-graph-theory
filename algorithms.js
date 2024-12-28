@@ -65,18 +65,15 @@ async function breadthFirstSearch(graph, timeDelay = 0) {
 
 async function fleurysAlgorithm(graph, timeDelay = 0) {
   if (!graph.isConnected()) {
-    console.log("Graph is not connected.");
     return [];
   }
   
   let oddDegreeNodes = graph.getOddVertices();
   if (oddDegreeNodes.length !== 0 && oddDegreeNodes.length !== 2) {
-    console.log("Invalid number of odd-degree nodes:", oddDegreeNodes.length);
     return [];
   }
 
   let start = oddDegreeNodes.length === 0 ? graph.nodes[0] : oddDegreeNodes[0];
-  console.log("Start node:", start);
 
   let visitedEdges = new Set();
   let stack = [start];
@@ -85,7 +82,6 @@ async function fleurysAlgorithm(graph, timeDelay = 0) {
   while (stack.length > 0) {
     let node = stack[stack.length - 1]; // Peek at the stack
     let neighbors = graph.getNeighbors(node);
-    console.log(`Current node: ${node}, Neighbors: ${neighbors}`);
 
     let unvisitedEdge = null;
     let nextNode = null;
@@ -101,14 +97,10 @@ async function fleurysAlgorithm(graph, timeDelay = 0) {
 
     if (unvisitedEdge) {
       visitedEdges.add(unvisitedEdge.toString());
-      console.log(`Visiting edge: ${unvisitedEdge.toString()}`);
       stack.push(nextNode);
     } else {
-      console.log(`Backtracking from node: ${node}`);
       path.push(stack.pop());
     }
   }
-
-  console.log("Final Eulerian Path:", path);
   return path;
 }
